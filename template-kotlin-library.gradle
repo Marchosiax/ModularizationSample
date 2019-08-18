@@ -1,0 +1,16 @@
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation Libraries.kotlin
+    implementation Libraries.koinXcore
+    implementation Libraries.koinXscope
+    implementation Libraries.koinXviewModel
+
+    implementation Libraries.coroutines
+
+    testImplementation Libraries.jUnit
+    testImplementation Libraries.koinTest
+    androidTestImplementation Libraries.testRunner
+    androidTestImplementation Libraries.testEspresso
+}

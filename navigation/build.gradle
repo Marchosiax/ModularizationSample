@@ -1,0 +1,5 @@
+apply from:"$rootDir/${GradleTemplates.androidLibrary}"
+
+dependencies {
+    implementation Libraries.appCompat
+}

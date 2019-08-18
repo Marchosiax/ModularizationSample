@@ -1,0 +1,8 @@
+include Modules.app,
+        Modules.library,
+        Modules.domain,
+        Modules.navigation,
+        Modules.network,
+        Modules.persistence,
+        Modules.shared,
+        Modules.home

@@ -1,0 +1,21 @@
+apply from: "$rootDir/${GradleTemplates.androidLibrary}"
+
+android {
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
+}
+
+dependencies {
+    implementation project(Modules.domain)
+    implementation Libraries.okhttp3
+    implementation Libraries.okhttp3Interceptor
+    implementation Libraries.retrofit
+    implementation Libraries.gson
+    implementation Libraries.retrofitGsonConverter
+
+    testImplementation Libraries.jUnit
+    testImplementation Libraries.androidxTest
+    testImplementation Libraries.truth
+    testImplementation Libraries.roboElectric
+}

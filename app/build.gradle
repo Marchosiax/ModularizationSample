@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion AppMetaData.compileSdkVersion
+    defaultConfig {
+        applicationId AppMetaData.id
+        minSdkVersion AppMetaData.minSdkVersion
+        targetSdkVersion AppMetaData.targetSdkVersion
+        versionCode AppMetaData.versionCode
+        versionName AppMetaData.versionName
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        buildConfigField "boolean", "DEBUG_LOGS", "true"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dynamicFeatures = [Modules.home]
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(Modules.domain)
+    implementation project(Modules.navigation)
+    implementation project(Modules.network)
+    implementation project(Modules.persistence)
+
+    implementation Libraries.kotlin
+    implementation Libraries.appCompat
+    implementation Libraries.androidxCore
+    implementation Libraries.koinXcore
+    implementation Libraries.koinXscope
+    implementation Libraries.koinXviewModel
+
+    api Libraries.lifecycleExtensions
+    api Libraries.lifecycleViewModel
+    api Libraries.lifecycleLiveData
+    api Libraries.lifecycleRuntime
+
+    implementation Libraries.multidex
+
+    testImplementation Libraries.jUnit
+    androidTestImplementation Libraries.testRunner
+    androidTestImplementation Libraries.testEspresso
+}

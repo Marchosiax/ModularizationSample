@@ -1,0 +1,7 @@
+apply from: "$rootDir/${GradleTemplates.androidLibrary}"
+
+dependencies {
+    api project(Modules.library)
+    implementation Libraries.retrofit
+    implementation Libraries.lifecycleLiveData
+}

@@ -50,8 +50,6 @@ class NetworkResponse<D> private constructor(
         return this
     }
 
-    fun empty() = EmptyBody()
-
     fun isWaiting() = state == State.WAITING
 
     fun isSuccessful() = state == State.SUCCESSFUL || state == State.SUCCESS_NO_DATA
@@ -64,8 +62,6 @@ class NetworkResponse<D> private constructor(
         val message: String? = null,
         val throwable: Throwable? = null
     )
-
-    class EmptyBody
 
     enum class State {
         WAITING, SUCCESSFUL, SUCCESS_NO_DATA, FAILURE

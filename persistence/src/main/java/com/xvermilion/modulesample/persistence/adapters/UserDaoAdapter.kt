@@ -1,7 +1,7 @@
 package com.xvermilion.modulesample.persistence.adapters
 
-import com.xvermilion.modulesample.library.dto.User
 import com.xvermilion.modulesample.domain.ports.persistence.UserDaoPort
+import com.xvermilion.modulesample.library.dto.User
 import com.xvermilion.modulesample.persistence.dao.UserDao
 import com.xvermilion.modulesample.persistence.entites.UserEntity
 
@@ -13,48 +13,14 @@ data class UserDaoAdapter(
         if (user is UserEntity)
             userDao.insert(user)
         else
-            userDao.insert(
-                UserEntity(
-                    user.id,
-                    user.name,
-                    user.username,
-                    user.serverUUID,
-                    user.serverToken,
-                    user.serverUUID,
-                    user.contract,
-                    user.differTime,
-                    user.clubScore,
-                    user.clubCif,
-                    user.clubEScore,
-                    user.clubLevel,
-                    user.clubRemainScore,
-                    user.clubLastUpdate
-                )
-            )
+            userDao.update(UserEntity(user.id, user.username, user.password))
     }
 
     override suspend fun update(user: User) {
         if (user is UserEntity)
             userDao.update(user)
         else
-            userDao.update(
-                UserEntity(
-                    user.id,
-                    user.name,
-                    user.username,
-                    user.serverUUID,
-                    user.serverToken,
-                    user.serverUUID,
-                    user.contract,
-                    user.differTime,
-                    user.clubScore,
-                    user.clubCif,
-                    user.clubEScore,
-                    user.clubLevel,
-                    user.clubRemainScore,
-                    user.clubLastUpdate
-                )
-            )
+            userDao.update(UserEntity(user.id, user.username, user.password))
     }
 
     override suspend fun getUser() = userDao.getUser()

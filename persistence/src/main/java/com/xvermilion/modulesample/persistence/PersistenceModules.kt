@@ -2,9 +2,11 @@ package com.xvermilion.modulesample.persistence
 
 import android.app.Application
 import androidx.room.Room
+import com.xvermilion.modulesample.domain.ports.persistence.BookDaoPort
 import com.xvermilion.modulesample.domain.ports.persistence.PreferenceStorage
 import com.xvermilion.modulesample.domain.ports.persistence.UserDaoPort
 import com.xvermilion.modulesample.persistence.DatabaseMetaData.NAME
+import com.xvermilion.modulesample.persistence.adapters.BookDaoAdapter
 import com.xvermilion.modulesample.persistence.adapters.UserDaoAdapter
 import com.xvermilion.modulesample.persistence.preferences.SharedPreferenceStorage
 import org.koin.android.ext.koin.androidContext
@@ -26,6 +28,7 @@ object PersistenceModules {
 
     private val portsModule = module {
         single<UserDaoPort> { UserDaoAdapter(get()) }
+        single<BookDaoPort> { BookDaoAdapter(get()) }
         single<PreferenceStorage> { SharedPreferenceStorage(androidContext()) }
     }
 

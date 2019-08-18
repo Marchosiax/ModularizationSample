@@ -1,6 +1,15 @@
 package com.xvermilion.modulesample.network
 
+import com.xvermilion.modulesample.domain.ports.network.AuthorNetworkPort
+import com.xvermilion.modulesample.domain.ports.network.BookNetworkPort
+import com.xvermilion.modulesample.domain.ports.network.UserNetworkPort
+import com.xvermilion.modulesample.network.adapter.AuthorNetworkAdapter
+import com.xvermilion.modulesample.network.adapter.BookNetworkAdapter
+import com.xvermilion.modulesample.network.adapter.UserNetworkAdapter
 import com.xvermilion.modulesample.network.model.BaseResponse
+import com.xvermilion.modulesample.network.webservice.AuthorWebService
+import com.xvermilion.modulesample.network.webservice.BookWebService
+import com.xvermilion.modulesample.network.webservice.UserWebService
 import okhttp3.CertificatePinner
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -22,17 +31,21 @@ object NetworkModules {
         single {
             buildRetrofitClient(
                 buildOkHttpClient(),
-                "https://url.com"
+                "https://fakerestapi.azurewebsites.net/api/"
             )
         }
     }
 
     private val webServiceModule = module {
-        //single { get<Retrofit>(named(Scopes.RETROFIT_MAIN)).create(BillWebService::class.java) }
+        single { get<Retrofit>().create(AuthorWebService::class.java) }
+        single { get<Retrofit>().create(BookWebService::class.java) }
+        single { get<Retrofit>().create(UserWebService::class.java) }
     }
 
     private val portModule = module {
-        //single<BankCalculatorNetworkPort> { BankCalculatorAdapter(get(), get()) }
+        single<AuthorNetworkPort> { AuthorNetworkAdapter(get(), get()) }
+        single<BookNetworkPort> { BookNetworkAdapter(get(), get()) }
+        single<UserNetworkPort> { UserNetworkAdapter(get(), get()) }
     }
 
     private val errorConverterModule = module {

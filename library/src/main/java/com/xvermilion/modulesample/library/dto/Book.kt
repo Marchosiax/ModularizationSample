@@ -6,4 +6,5 @@ interface Book {
     val description: String?
     val publishDate: String?
     val pages: Int
+    var cover:String?
 }

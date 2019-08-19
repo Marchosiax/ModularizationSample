@@ -9,11 +9,11 @@ data class UserDaoAdapter(
     private val userDao: UserDao
 ) : UserDaoPort {
 
-    override suspend fun insert(user: User) {
+    override suspend fun insertOrUpdate(user: User) {
         if (user is UserEntity)
-            userDao.insert(user)
+            userDao.insertOrReplace(user)
         else
-            userDao.update(UserEntity(user.id, user.username, user.password))
+            userDao.insertOrReplace(UserEntity(user.id, user.username, user.password))
     }
 
     override suspend fun update(user: User) {

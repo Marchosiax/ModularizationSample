@@ -5,7 +5,7 @@ import com.xvermilion.modulesample.library.dto.User
 
 interface UserDaoPort {
 
-    suspend fun insert(user: User)
+    suspend fun insertOrUpdate(user: User)
 
     suspend fun update(user: User)
 

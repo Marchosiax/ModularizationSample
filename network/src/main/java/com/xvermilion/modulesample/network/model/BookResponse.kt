@@ -13,5 +13,6 @@ data class BookResponse(
     @SerializedName("PublishDate")
     override val publishDate: String?,
     @SerializedName("PageCount")
-    override val pages: Int
+    override val pages: Int,
+    override var cover: String? = null
 ) : Book

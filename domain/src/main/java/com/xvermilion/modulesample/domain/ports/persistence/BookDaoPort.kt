@@ -5,7 +5,7 @@ import com.xvermilion.modulesample.library.dto.Book
 
 interface BookDaoPort {
 
-    suspend fun insert(book: Book)
+    suspend fun insertOrReplace(book: Book)
 
     suspend fun getBooks(): List<Book>
 

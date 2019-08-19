@@ -1,14 +1,18 @@
 package com.xvermilion.modulesample.library.repository
 
 import androidx.lifecycle.LiveData
+import com.xvermilion.modulesample.library.NetworkResponse
 import com.xvermilion.modulesample.library.dto.Book
 
 interface BookRepository {
 
-    suspend fun insert(book: Book)
+    suspend fun insertFavourite(book: Book)
 
-    suspend fun getBooks(): List<Book>
+    suspend fun getFavouriteBooks(): List<Book>
 
-    fun getBooksLive(): LiveData<out List<Book>?>
+    fun getFavouriteBooksLive(): LiveData<out List<Book>?>
 
+    suspend fun getBooks(): NetworkResponse<List<Book>>
+
+    suspend fun getBook(id: Int): NetworkResponse<Book>
 }

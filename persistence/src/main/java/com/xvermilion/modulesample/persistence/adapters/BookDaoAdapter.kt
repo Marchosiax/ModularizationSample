@@ -7,11 +7,11 @@ import com.xvermilion.modulesample.persistence.entites.BookEntity
 
 internal class BookDaoAdapter(private val dao: BookDao) : BookDaoPort {
 
-    override suspend fun insert(book: Book) {
+    override suspend fun insertOrReplace(book: Book) {
         if (book is BookEntity)
-            dao.insert(book)
+            dao.insertOrReplace(book)
         else
-            dao.insert(
+            dao.insertOrReplace(
                 BookEntity(
                     book.id,
                     book.title,

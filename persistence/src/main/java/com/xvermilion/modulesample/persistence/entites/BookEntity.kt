@@ -11,5 +11,6 @@ data class BookEntity(
     override val title: String?,
     override val description: String?,
     override val publishDate: String?,
-    override val pages: Int
+    override val pages: Int,
+    override var cover: String? = null
 ) : Book
